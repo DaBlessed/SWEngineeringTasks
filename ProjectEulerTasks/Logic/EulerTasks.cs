@@ -1,4 +1,5 @@
 ﻿using System;
+using static ProjectEulerTasks.Main.Logic.NumberUtilities;
 
 namespace ProjectEulerTasks.Main.Logic
 {
@@ -40,11 +41,10 @@ namespace ProjectEulerTasks.Main.Logic
             int fibValue= 0, next,sum = 0;
            // var fibArray = Array.Empty<int>();
            // fibArray[1] = fib1; fibArray[2] = fib2;
-
             
             for (next = 1; fibValue <= 4000000; next++)
             {
-                 fibValue = NumberUtilities.GetFibonacciValue(next);
+                 fibValue = GetFibonacciValue(next);
                 if (fibValue % 2 == 0)
                 {
                     sum += fibValue;
@@ -59,9 +59,40 @@ namespace ProjectEulerTasks.Main.Logic
             What is the largest prime factor of the number 600851475143?
         */
         
-        internal static int LargestPrimeFactor()
+        internal static long LargestPrimeFactor(long n)
         {
-            return 0;
+ 
+            // found a better way, just set the value to max istead of keeping a list
+            long primeFactorMax = 2;
+
+            //check if n is less than two, the lowest prime number, if so, return 0 for now
+            if (n < 2)
+            {
+                return 0;
+            }
+            //if n = 2, the lowest prime number, just return 2
+            else if (n == 2)
+            {
+                return primeFactorMax;
+            }
+            /*if not,
+            check for the possible divisible numbers, if ther are a prime number
+            then check if they are a prime factor of n
+            add them to the list
+            and check for the max value in the list*/
+            else
+            {
+                //for (long i = 2; i < n; i++) -- this takes too long
+                for (long i = 0; i < Convert.ToInt64(n/2); i++)
+                {
+                    if (IsPrimeNumber(i) && (n % i == 0))
+                    {
+                       primeFactorMax = i;                     
+                    }
+                }
+                return primeFactorMax;
+            }
+     
         }
         public EulerTasks()
         {

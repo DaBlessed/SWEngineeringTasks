@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,6 +46,31 @@ namespace ProjectEulerTasks.Main.Logic
 
             return a;
 
+        }
+        internal static bool IsPrimeNumber (long n)
+        {
+            //validate that n is a positive number greater than 1
+            if (n <= 1)
+            {
+                return false;
+            }
+            if (n == 2)
+            {
+                return true;
+            }
+            else
+            {
+                for (long i = 2; i < n; i++)
+                {
+                    //if n is not divisible by i with a remainder, it is a prime number
+                    if (n % i == 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            
         }
     }
 }

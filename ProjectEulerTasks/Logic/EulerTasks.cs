@@ -94,6 +94,71 @@ namespace ProjectEulerTasks.Main.Logic
             }
      
         }
+
+        internal static long EfficientLargestPrimeFactor(long number)
+        {
+            /* - confirm that n is a positive number greater than 1
+             * - get the list of prime numbers from 2 to n using Eratosthenes sieve
+             * - check if the prime number is a factor of n
+             * - get the largest prime factor from the list
+             * */
+
+            //set number to the value we are checking for
+            //long number = 600851475143;
+            if (number <= 1)
+            {
+                return 0;
+            }
+
+            else if (number == 2 || number == 3 || number == 5 || number == 7)
+            {
+                return number;
+            }
+            else
+            {
+                long largestFactor = 1;
+                long temp = number;
+
+                // Handle factor 2 separately (optimization for even numbers)
+                while (temp % 2 == 0)
+                {
+                    largestFactor = 2;
+                    temp /= 2;
+                }
+                //next
+                // Check odd factors starting from 3
+                // Only need to check up to √temp because if temp has a factor > √temp,
+                // it can only have one such factor, and that factor would be prime
+                for (long i = 3; i * i <= temp; i += 2)
+                {
+                    while (temp % i == 0)
+                    {
+                        largestFactor = i;
+                        temp /= i;
+                    }
+                }
+
+                // If temp > 1, then it's a prime factor larger than √original_number
+                if (temp > 1)
+                {
+                    largestFactor = temp;
+                }
+
+                return largestFactor;
+          
+            }
+        }
+
+        /*
+         * A palindromic number reads the same both ways. 
+         * The largest palindrome made from the product of two-digit numbers is 9009 = 91 times 99
+         * Find the largest palindrome made from the product of two 3-digit numbers.
+        */
+        internal static int LargestPalindromeOf3Numbers()
+        {
+            return 0;
+        }
+
         public EulerTasks()
         {
         }

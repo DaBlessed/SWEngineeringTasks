@@ -62,7 +62,7 @@ namespace ProjectEulerTasks.Main.Logic
             {
                 for (long i = 2; i < n; i++)
                 {
-                    //if n is not divisible by i with a remainder, it is a prime number
+                    //if n is not divisible by i, it is a prime number
                     if (n % i == 0)
                     {
                         return false;
@@ -71,6 +71,25 @@ namespace ProjectEulerTasks.Main.Logic
                 return true;
             }
             
+        }
+
+        internal static bool IsPrimeOptimised (long value)
+        {
+            if (value < 2)
+                return false;
+            else if (value == 2)
+                return true;
+            else if (value % 2 == 0) /*if it is an even number*/
+                return false;
+
+            var root = Convert.ToInt64(Math.Sqrt(value));
+
+            for (int i = 3; i <= root; i += 2)
+            {
+                if (value % i == 0)
+                    return false;
+            }
+            return true;
         }
     }
 }

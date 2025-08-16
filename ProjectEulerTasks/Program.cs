@@ -9,7 +9,7 @@ var testNo = Convert.ToInt64(Console.ReadLine());
 
 var sumOfMultiplesOf3And5 = SumOfMultiplesOf3And5();
 var sumOfEvenFibonacciValues = SumOfEvenFibonacciNumbers();
-var largestPrimeFactorValue = LargestPrimeFactor(testNo);
+var largestPrimeFactorValue = EfficientLargestPrimeFactor(testNo);
 
 //Console.WriteLine(sumOfMultiplesOf3And5);
 //Console.WriteLine("The sum of even Fibonacci Values is" + sumOfEvenFibonacciValues);
